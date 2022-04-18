@@ -106,6 +106,10 @@ namespace TIPS
         const T* data() const { return data_.data(); }
         T* data() { return data_.data(); }
 
+        // check wheather two images are equal
+        bool operator==(const Image<T>& im) const { return (width_==im.width_ && height_==im.height_ && data_==im.data_); }
+        bool operator!=(const Image<T>& im) const { return !(*this == im); }
+
         // destructor
         virtual ~Image() {}
 
@@ -131,6 +135,12 @@ namespace TIPS
         using const_iterator = typename decltype(data_)::const_iterator;
         using reverse_iterator = typename decltype(data_)::reverse_iterator;
         using const_reverse_iterator = typename decltype(data_)::const_reverse_iterator;
+
+        // return row-wise iterator
+        iterator begin() { return data_.begin(); }
+        const_iterator begin() const { return data.begin() }
+        iterator end() { return data_.end(); }
+        const_iterator end() { return data_.end(); }
 
     };
 
